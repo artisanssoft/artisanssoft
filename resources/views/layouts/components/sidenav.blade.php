@@ -51,8 +51,8 @@
                             </div>
                         </a>
                     </li>
-		<li class="px-3 py-2 rounded-sm mb-0.5 last:mb-0" :class="page === 'dashboard' && 'bg-gray-900'">
-                        <a class="block text-gray-200 hover:text-white transition duration-150" :class="page === 'dashboard' && 'hover:text-gray-200'" href="{{ route('home') }}">
+					<li class="px-3 py-2 rounded-sm mb-0.5 last:mb-0" :class="page === 'dashboard' && 'bg-gray-900'">
+                        <a class="block text-gray-200 hover:text-white transition duration-150" :class="page === 'dashboard' && 'hover:text-gray-200'" href="{{ route('launchpad') }}">
                             <div class="flex flex-grow flex-inline">
                                 <i class="far fa-compass ">
                                 <span class="text-sm font-medium ml-2">Launchpad</span>
@@ -60,10 +60,9 @@
                             </div>
                         </a>
                     </li>
-					
 
                     <li class="px-3 py-2 rounded-sm mb-0.5 last:mb-0" :class="page === 'dashboard' && 'bg-gray-900'">
-                        <a class="block text-gray-200 hover:text-white transition duration-150" :class="page === 'dashboard' && 'hover:text-gray-200'" href="{{ route('token-page') }}">
+                        <a class="block text-gray-200 hover:text-white transition duration-150" :class="page === 'dashboard' && 'hover:text-gray-200'" href="{{ route('mytokens') }}">
                             <div class="flex flex-grow flex-inline">
                                 <i class="far fa-compass ">
                                 <span class="text-sm font-medium ml-2">My tokens</span>
@@ -71,12 +70,11 @@
                             </div>
                         </a>
                     </li>
-
-<li class="px-3 py-2 rounded-sm mb-0.5 last:mb-0" :class="page === 'dashboard' && 'bg-gray-900'">
-                        <a class="block text-gray-200 hover:text-white transition duration-150" :class="page === 'dashboard' && 'hover:text-gray-200'" href="{{ route('affiliate-page') }}">
+                    <li class="px-3 py-2 rounded-sm mb-0.5 last:mb-0" :class="page === 'dashboard' && 'bg-gray-900'">
+                        <a class="block text-gray-200 hover:text-white transition duration-150" :class="page === 'dashboard' && 'hover:text-gray-200'" href="{{ route('affiliates') }}">
                             <div class="flex flex-grow flex-inline">
                                 <i class="far fa-compass ">
-                                <span class="text-sm font-medium ml-2">My affiliate earnings</span>
+                                <span class="text-sm font-medium ml-2">My Affiliate earnings</span>
                                 </i>
                             </div>
                         </a>
@@ -85,20 +83,6 @@
             </div>
 
             <!-- Bottom informations -->
-            <div class="flex-shrink-0 block w-full">
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-                    <x-jet-dropdown-link href="{{ route('logout') }}"
-                                         class="group  border-transparent flex items-center text-sm font-medium text-gray-600 hover:text-gray-500 hover:bg-gray-700"
-                                         onclick="event.preventDefault();
-                                                this.closest('form').submit();">
-                        <i class="far fa-sign-out-alt">
-                        {{ __('Log Out') }}</i>
-                    </x-jet-dropdown-link>
-                </form>
-
-                <span class="text-sm">Version 1.0</span>
-            </div>
 
         </div>
 

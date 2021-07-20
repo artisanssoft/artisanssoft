@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\MainController;
+use App\Http\Controllers\LaunchPadController;
 use App\Http\Controllers\TokenController;
 use App\Http\Controllers\AffiliateController;
 
@@ -23,8 +23,8 @@ Route::get('/', function () {
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
-Route::get('/', [MainController::class, 'index'])->name('home');
-Route::get('/mytokens', [TokenController::class, 'index'])->name('token-page');
-Route::get('/affiliates', [AffiliateController::class, 'index'])->name('affiliate-page');
+Route::get('/', [LaunchPadController::class, 'index'])->name('launchpad');
+Route::get('/mytokens', [TokenController::class, 'index'])->name('mytokens');
+Route::get('/affiliates', [AffiliateController::class, 'index'])->name('affiliates');
 
 
