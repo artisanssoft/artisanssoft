@@ -43,8 +43,10 @@
             </main>
 
             </div>
-        </div>
+            
 
+        </div>
+        @include('layouts.components.footer')
         @stack('modals')
 
         @livewireScripts

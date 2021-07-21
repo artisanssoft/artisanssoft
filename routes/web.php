@@ -23,7 +23,7 @@ Route::get('/', function () {
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
-Route::get('/', [LaunchPadController::class, 'index'])->name('launchpad');
+Route::get('/launchpad', [LaunchPadController::class, 'index'])->name('launchpad');
 Route::get('/mytokens', [TokenController::class, 'index'])->name('mytokens');
 Route::get('/affiliates', [AffiliateController::class, 'index'])->name('affiliates');
 
