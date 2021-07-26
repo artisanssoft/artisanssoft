@@ -21,7 +21,7 @@
             {{ __('Dashboard') }}
         </h2>
     </x-slot>
-    
+    <!-- @include('layouts.components.flash-message') -->
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             {{-- ** --}}

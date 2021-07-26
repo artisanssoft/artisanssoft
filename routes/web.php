@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LaunchPadController;
 use App\Http\Controllers\TokenController;
 use App\Http\Controllers\AffiliateController;
+use App\Http\Controllers\UserController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -16,15 +18,23 @@ use App\Http\Controllers\AffiliateController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::middleware('checkLogin')->get('/', function () {
+    return view('index');
 });
+
+Route::post('/login',[UserController::class,'login'])->name('login-check');
+Route::post('/register',[UserController::class,'register'])->name('register.user');
+Route::get('/logout',[UserController::class,'logout'])->name('user.logout');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
-Route::get('/launchpad', [LaunchPadController::class, 'index'])->name('launchpad');
-Route::get('/mytokens', [TokenController::class, 'index'])->name('mytokens');
-Route::get('/affiliates', [AffiliateController::class, 'index'])->name('affiliates');
+Route::get('/', [LaunchPadController::class, 'index'])->name('launchpad')->middleware('checkLogin');
+Route::get('/mytokens', [TokenController::class, 'index'])->name('mytokens')->middleware('checkLogin');
+Route::get('/affiliates', [AffiliateController::class, 'index'])->name('affiliates')->middleware('checkLogin');
 
 

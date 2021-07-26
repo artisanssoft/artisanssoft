@@ -26,8 +26,8 @@
             <!-- Content area -->
             <div class="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
             <!-- Top Heading -->
-            <livewire:topheader />
-
+            @include('layouts.components.topheader')
+            {{--<livewire:topheader /> --}}
             <!-- Page Heading -->
             {{--@if (isset($header))
                 <header class="bg-white shadow">

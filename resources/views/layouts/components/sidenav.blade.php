@@ -41,16 +41,7 @@
             <div class="flex-grow flex flex-col">
                 <h3 class="text-xs uppercase text-gray-500 font-semibold pl-3">Pages</h3>
                 <ul class="mt-3">
-                    <!-- Dashboard -->
-                    <li class="px-3 py-2 rounded-sm mb-0.5 last:mb-0" :class="page === 'dashboard' && 'bg-gray-900'">
-                        <a class="block text-gray-200 hover:text-white transition duration-150" :class="page === 'dashboard' && 'hover:text-gray-200'" href="{{ route('dashboard') }}">
-                            <div class="flex flex-grow flex-inline">
-                                <i class="far fa-compass ">
-                                <span class="text-sm font-medium ml-2">Dashboard</span>
-                                </i>
-                            </div>
-                        </a>
-                    </li>
+                   
 					<li class="px-3 py-2 rounded-sm mb-0.5 last:mb-0" :class="page === 'dashboard' && 'bg-gray-900'">
                         <a class="block text-gray-200 hover:text-white transition duration-150" :class="page === 'dashboard' && 'hover:text-gray-200'" href="{{ route('launchpad') }}">
                             <div class="flex flex-grow flex-inline">
