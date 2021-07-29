@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use App\Models\User;
 use Session;
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {  
@@ -28,15 +31,36 @@ class UserController extends Controller
         // close the connection, release resources used
         curl_close($ch);
         $response = json_decode($response);
+        
+        $user= User::where('email', $request->email)->first();
 
-       //dd($response);
-        if($response->success==true){
-            $token = $response->data->token;
-            Session::put('api_token', $token);
+
+        if($response->success == true){
+            $token = $user->createToken('my-app-token')->plainTextToken;
+        
+            $response = [
+                'user' => $user,
+                'status' =>201,
+                'token' => $token
+            ];
             return redirect()->route('launchpad')->with('success','you are logged in successfully!');
-        }else{
-            return redirect()->route('login-check')->with('error','Please check email or password!');
         }
+        else{
+            $response=[
+                'status'=>404,
+                'message'=>'credentials not matched'
+            ];
+        }
+        return response($response);
+       //dd($response);
+        // if($response->success==true){
+
+        //     $token = $response->data->token;
+        //     Session::put('api_token', $token);
+        //     return redirect()->route('launchpad')->with('success','you are logged in successfully!');
+        // }else{
+        //     return redirect()->route('login-check')->with('error','Please check email or password!');
+        // }
     }
 
     public function register(Request $request){
@@ -46,7 +70,7 @@ class UserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => $request->password,
-            'c_password' => $request->c_password,
+            'password_confirmation' => $request->password_confirmation,
         ];
         $url = "https://api.next.exchange/api/register";
 
@@ -63,9 +87,16 @@ class UserController extends Controller
         curl_close($curl);
         $response = json_decode($resp);
 
-        
         if($response->success==true){
-            $token = $response->data->token;
+        //     $users = User::create([
+        // 'name' => $request->name,
+        // 'email' => $request->email,
+        // 'password' => Hash::make($request->password),
+        // ]);
+
+            $token = $user->createToken('my-app-token')->plainTextToken;
+            dd($user);
+
             return view('pages.index');
         }else{
             abort(403);

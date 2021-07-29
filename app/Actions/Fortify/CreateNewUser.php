@@ -22,14 +22,25 @@ class CreateNewUser implements CreatesNewUsers
      */
     public function create(array $input)
     {
-        Validator::make($input, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => $this->passwordRules(),
-            'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['required', 'accepted'] : '',
-        ])->validate();
-
-        return DB::transaction(function () use ($input) {
+        $data = [
+            'name' => $input['name'],
+            'email' => $input['email'],
+            'password' => $input['password'],
+            'c_password' => $input['password_confirmation'],
+        ];
+        $url = "https://api.next.exchange/api/register";
+        $curl = curl_init($url);
+        $headers = array(
+           "Accept: application/json",
+        );
+        curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+        $resp = curl_exec($curl);
+        curl_close($curl);
+        $response = json_decode($resp);
+        if($response->success==true){
+            return DB::transaction(function () use ($input) {
             return tap(User::create([
                 'name' => $input['name'],
                 'email' => $input['email'],
@@ -38,6 +49,25 @@ class CreateNewUser implements CreatesNewUsers
                 $this->createTeam($user);
             });
         });
+        }else{
+            abort(403);
+        }
+        // Validator::make($input, [
+        //     'name' => ['required', 'string', 'max:255'],
+        //     'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+        //     'password' => $this->passwordRules(),
+        //     'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['required', 'accepted'] : '',
+        // ])->validate();
+
+        // return DB::transaction(function () use ($input) {
+        //     return tap(User::create([
+        //         'name' => $input['name'],
+        //         'email' => $input['email'],
+        //         'password' => Hash::make($input['password']),
+        //     ]), function (User $user) {
+        //         $this->createTeam($user);
+        //     });
+        // });
     }
 
     /**

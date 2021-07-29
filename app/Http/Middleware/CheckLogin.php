@@ -16,11 +16,11 @@ class CheckLogin
      */
     public function handle(Request $request, Closure $next)
     {
-        $token = session('api_token');
-        if ($token) {
+        // $token = session('api_token');
+        // if ($token) {
             return $next($request);    
-        }
-        return redirect('login');
+        // }
+        // return redirect('login');
         
     }
 }

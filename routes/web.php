@@ -18,23 +18,23 @@ use App\Http\Controllers\UserController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
-Route::middleware('checkLogin')->get('/', function () {
-    return view('index');
+Route::get('/', function () {
+    return view('welcome');
 });
 
-Route::post('/login',[UserController::class,'login'])->name('login-check');
-Route::post('/register',[UserController::class,'register'])->name('register.user');
-Route::get('/logout',[UserController::class,'logout'])->name('user.logout');
+// Route::middleware('checkLogin')->get('/', function () {
+//     return view('index');
+// });
+
+// Route::post('/login',[UserController::class,'login'])->name('login-check');
+// Route::post('/register',[UserController::class,'register'])->name('register.user');
+// Route::get('/logout',[UserController::class,'logout'])->name('user.logout');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
-Route::get('/', [LaunchPadController::class, 'index'])->name('launchpad')->middleware('checkLogin');
-Route::get('/mytokens', [TokenController::class, 'index'])->name('mytokens')->middleware('checkLogin');
-Route::get('/affiliates', [AffiliateController::class, 'index'])->name('affiliates')->middleware('checkLogin');
+Route::get('/', [LaunchPadController::class, 'index'])->name('launchpad')->middleware(['auth:sanctum', 'verified']);
+Route::get('/mytokens', [TokenController::class, 'index'])->name('mytokens')->middleware(['auth:sanctum', 'verified']);
+Route::get('/affiliates', [AffiliateController::class, 'index'])->name('affiliates')->middleware(['auth:sanctum', 'verified']);
 
 
