@@ -94,7 +94,7 @@
                     </div>
                     <div class="border-t bg-gray-100 border-gray-200">
                         <div class="py-3 sm:px-10">
-                            <a class="text-xs rounded-sm px-1 py-0.8 font-medium bg-red-100 text-red-700" href="#">https://merchanttoken.org?ref=6101453ZM</a>
+                            <a class="text-xs rounded-sm px-1 py-0.8 font-medium bg-red-100 text-red-700" href="#">https://api.next.exchange?ref={{$ref}}</a>
                         </div>
                     </div>
                 </div>

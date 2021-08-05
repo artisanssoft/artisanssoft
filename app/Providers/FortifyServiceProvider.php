@@ -55,6 +55,7 @@ class FortifyServiceProvider extends ServiceProvider
             if($response->success==true){
                 $user = User::where('email', $request->email)->first();
                 $token = $response->data->token;
+                Session::put('api_token', $token);
                 if ($user && Hash::check($request->password, $user->password)){
                     return $user;
                 }else{
