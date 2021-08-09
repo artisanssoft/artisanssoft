@@ -24,13 +24,23 @@ class AffiliateController extends Controller
             $response = curl_exec($ch);
             curl_close($ch);
             $response = json_decode($response);
-            
             if($response->success==true){
                 $ref = $response->data;
-                return view('pages.affiliate-page', compact('ref'));
+                $chb = curl_init("https://api.blockcypher.com/v1/eth/main/addrs/738d145faabb1e00cf5a017588a9c0f998318012");
+                curl_setopt($chb, CURLOPT_RETURNTRANSFER, true);
+                $headers = array(
+                "Accept: application/json",
+                );
+                curl_setopt($chb, CURLOPT_HTTPHEADER, $headers);
+                $res = curl_exec($chb);
+                curl_close($chb);
+                $res= json_decode($res);
+                dd($res);
+                return view('pages.affiliate-page', compact('ref','res'));
             }else{
                 $ref ='null';
-                return view('pages.affiliate-page', compact('ref'));
+                $res = 'null';
+                return view('pages.affiliate-page', compact('ref','res'));
             }
            // return view('pages.affiliate-page');
     }

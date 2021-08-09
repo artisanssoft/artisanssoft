@@ -6,10 +6,10 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name', 'Your Laravel App') }}</title>
     <!-- Font & Styles -->
-    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     @livewireStyles
     <!-- Scripts -->
-    <script src="{{ mix('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/app.js') }}" defer></script>
 </head>
 <x-app-layout>
     <x-slot name="header">
@@ -49,7 +49,12 @@
                                     My MTO Balance <span class="text-xxs rounded-lg px-1 font-medium py-1 bg-blue-100 text-indigo-500">$0.00</span>
                                 </p>
                                 <p class="text-xs">
-                                    0.0000000000000000
+                                    @if($res)
+                                        {{$res->final_balance}}
+                                    @else
+                                        NA
+                                    @endif
+                                    
                                 </p>
                             </div>
                         </div>
