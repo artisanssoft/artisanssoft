@@ -48,6 +48,13 @@ class CreateNewUser implements CreatesNewUsers
             ]), function (User $user) {
                 $this->createTeam($user);
             });
+
+            // update referal_campaigns table
+            $refId = \Cookie::get('refer-account-id');
+            if(!empty($refId)){
+                $userIpAddress = Common::getUserIpAddr();
+                \App\Models\ReferalCampaign::where(['account_id'=>$refId,'current_user_ip'=>$userIpAddress])->update(['sign_up'=>1]);
+            }
         });
         }else{
             abort(403);

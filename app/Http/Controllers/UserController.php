@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use App\Models\User;
 use Session;
+use Common;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Facades\Hash;
 
@@ -65,7 +66,7 @@ class UserController extends Controller
 
     public function register(Request $request){
         // set post fields
-       
+       dd($request->all());
         $data = [
             'name' => $request->name,
             'email' => $request->email,
@@ -95,6 +96,15 @@ class UserController extends Controller
         // ]);
 
             $token = $user->createToken('my-app-token')->plainTextToken;
+
+            // check if any referal id exists
+            $userIpAddress = Common::getUserIpAddr();
+            $referAccountId = \Cookie::get('refer-account-id');
+            echo $referAccountId;die;
+            $checkData = \App\Models\ReferalCampaign::where(['account_id'=>$referAccountId,'current_user_ip'=>$userIpAddress])->first();
+            if($checkData){
+
+            }
             dd($user);
 
             return view('pages.index');
@@ -126,6 +136,27 @@ class UserController extends Controller
             return redirect()->route('login-check');
         }else{
             abort(403);
+        }
+    }
+    
+    public function referal(Request $request){
+        try{
+            $refId = $request->ref;
+            $userIpAddress = Common::getUserIpAddr();
+            $checkData = \App\Models\ReferalCampaign::where(['account_id'=>$refId,'current_user_ip'=>$userIpAddress])->first();
+            if(!$checkData){
+                $referalCampaignObj = new \App\Models\ReferalCampaign();
+                $referalCampaignObj->account_id = $refId;
+                $referalCampaignObj->current_user_ip = $userIpAddress;
+                $referalCampaignObj->sign_up = 0;
+                $referalCampaignObj->sign_up_account_id = 0;
+                $referalCampaignObj->save();
+            }
+            $cookie =   \Cookie::queue(\Cookie::make('refer-account-id', $refId,1800));
+            return redirect('register');
+        }catch(\Exception $e){
+            echo $e->getMessage();die;
+            return redirect()->back();
         }
     }
 }

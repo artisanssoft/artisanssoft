@@ -33,7 +33,7 @@
                                     Account ID
                                 </p>
                                 <p class="text-xs rounded-lg px-2 font-medium py-0.8 bg-gray-200 text-gray-700">
-                                    G1Q1453ZM
+                                    {{$refId}}
                                 </p>
                             </div>
                             <div class="mb-4 border-0 p-0 w-full sm:mb-0 w-auto border-r px-4 border-gray-200">
@@ -99,7 +99,7 @@
                     </div>
                     <div class="border-t bg-gray-100 border-gray-200">
                         <div class="py-3 sm:px-10">
-                            <a class="text-xs rounded-sm px-1 py-0.8 font-medium bg-red-100 text-red-700" href="#">https://api.next.exchange?ref={{$ref}}</a>
+                            <a class="text-xs rounded-sm px-1 py-0.8 font-medium bg-red-100 text-red-700" href="#">{{url('/referal').'?ref='.$refId}}</a>
                         </div>
                     </div>
                 </div>
@@ -135,6 +135,17 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <tr>
+                                        <td class="text-left">
+                                            <span class="text-xs font-medium">1</span>
+                                        </td>
+                                        <td class="text-right">
+                                            <span class="text-xs font-medium">{{$uniqueClicks}}</span>
+                                        </td>
+                                        <td class="text-right"><span class="text-xs font-medium">-</span></td>
+                                        <td class="text-right"><span class="text-xs font-medium">{{$signUps}}</span></td>
+                                        <td class="text-right"><span class="text-xs font-medium">-</span></td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>

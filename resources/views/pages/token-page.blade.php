@@ -6,10 +6,10 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name', 'Your Laravel App') }}</title>
     <!-- Font & Styles -->
-    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     @livewireStyles
     <!-- Scripts -->
-    <script src="{{ mix('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/app.js') }}" defer></script>
 </head>
 <x-app-layout>
     <x-slot name="header">
@@ -20,6 +20,12 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             {{-- Next Page --}}
+
+            <div class="alert alert-danger" id="alert-error-https" style="display: none;margin-bottom:20px;">
+                You can run this only over HTTPS connection.
+            </div>
+            <div id="error-msg"></div>
+
             <div class="bg-white mb-4 overflow-hidden shadow-xl sm:rounded-sm">
                 <div class="sm:bg-white border-b border-gray-200">
                     <div class="p-6 sm:px-10 flex justify-between ">
@@ -27,7 +33,7 @@
                             My Token
                         </h2>
                         <p class="text-sm">
-                            G1Q1453ZM
+                            {{$refData->data}}
                         </p>
                     </div>
                     <div class="border-t bg-gray-100 border-gray-200">
@@ -37,7 +43,7 @@
                                     Account ID
                                 </p>
                                 <p class="text-xs rounded-lg px-2 font-medium py-0.8 bg-gray-200 text-gray-700">
-                                    G1Q1453ZM
+                                    {{$refData->data}}
                                 </p>
                             </div>
                             <div class="mb-4 border-0 p-0 w-full sm:mb-0 w-auto border-r px-4 border-gray-200">
@@ -52,7 +58,7 @@
                                 <p class="text-sm">
                                     ETH Balance
                                 </p>
-                                <p class="text-xs">
+                                <p class="text-xs" id="eth-balance">
                                     0.0000000000000000
                                 </p>
                             </div>
@@ -77,8 +83,10 @@
                         </h2>
                     </div>
                     <div class="px-6 text-center py-8 sm:px-10">
-                        <img class="mx-auto w-6" src="/images/ethereum.png" alt="ethereum">
-                        <p class="text-sm mt-4">No Ethereum transactions made to your deposit address yet</p>
+                        {{-- <img class="mx-auto w-6" src="/images/ethereum.png" alt="ethereum"> --}}
+                        <div id="transaction-blck">
+
+                        </div>
                     </div>
                 </div>
             </div>
@@ -100,4 +108,11 @@
         </div>
     </div>
 </x-app-layout>
+    <script type="text/javascript" src="https://unpkg.com/web3@1.2.11/dist/web3.min.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/web3modal@1.9.0/dist/index.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/evm-chains@0.2.0/dist/umd/index.min.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/@walletconnect/web3-provider@1.2.1/dist/umd/index.min.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/fortmatic@2.0.6/dist/fortmatic.js"></script>
+    <!-- This is our example code -->
+    <script type="text/javascript" src="{{asset('js/ethereum-script.js')}}"></script>
 </html>
