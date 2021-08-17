@@ -36,7 +36,6 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 Route::get('/', [LaunchPadController::class, 'index'])->name('launchpad')->middleware(['auth:sanctum', 'verified']);
 Route::get('/mytokens', [TokenController::class, 'index'])->name('mytokens')->middleware(['auth:sanctum', 'verified']);
 Route::get('/affiliates', [AffiliateController::class, 'index'])->name('affiliates')->middleware(['auth:sanctum', 'verified']);
-
 // store referal id in cookies
 Route::get('/referal', [UserController::class, 'referal']);
 
