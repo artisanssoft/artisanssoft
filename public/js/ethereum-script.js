@@ -67,7 +67,7 @@ async function refreshAccountData() {
   await fetchAccountData(provider);
   document.querySelector("#btn-connect").removeAttribute("disabled")
 }
-
+//connect
 async function onConnect() {
 	console.log("Opening a dialog", web3Modal);
   try {

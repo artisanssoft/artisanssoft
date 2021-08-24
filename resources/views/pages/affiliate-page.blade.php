@@ -151,6 +151,7 @@
                             </table>
                         </div>
                     </div>
+                    
                     <div class="flex justify-between  border-t border-gray-200">
                         <div class="v2-table-page-results px-2  py-4 sm:px-10">
                             <span class="v2-text-base">1 campaigns</span>

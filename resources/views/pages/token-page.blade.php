@@ -129,11 +129,13 @@
                                 <tbody id="accounts">
                                 </tbody>
                             </table>
+
                             <p>Please try to switch between different accounts in your wallet if your wallet supports this functonality.</p>
                         </div>
                     </div>
                 </div>
             </div>
+            
             <div id="templates" style="display: none">
                 <template id="template-balance">
                     <tr>
