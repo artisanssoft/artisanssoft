@@ -104,15 +104,54 @@
                     </div>
                 </div>
             </div>
+            <div class="bg-white mb-4 overflow-hidden shadow-xl sm:rounded-sm">
+                <div>
+                    <div class="px-6 text-center py-8 sm:px-10">
+                        <h1 class="text-lg font-medium">Wallet Connect Web-3</h1>
+                        <div id="prepare">
+                            <button class="btn btn-primary" id="btn-connect">Connect wallet</button>
+                        </div>
+                        <div id="connected" style="display: none">
+                            <button class="btn btn-primary" id="btn-disconnect">Disconnect wallet</button>
+                            <hr>
+                            <div id="network">
+                                <p><strong>Connected blockchain:</strong> <span id="network-name"></span></p>
+                                <p><strong>Selected account:</strong> <span id="selected-account"></span></p>
+                            </div>
+                            <hr>
+                            <h3>All account balances</h3>
+                            <table class="table table-listing">
+                                <thead>
+                                <th>Address</th>
+                                <th>ETH balance</th>
+                                </thead>
+
+                                <tbody id="accounts">
+                                </tbody>
+                            </table>
+                            <p>Please try to switch between different accounts in your wallet if your wallet supports this functonality.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="templates" style="display: none">
+                <template id="template-balance">
+                    <tr>
+                    <th class="address"></th>
+                    <td class="balance"></td>
+                    </tr>
+                </template>
+            </div>
             {{-- ** --}}
         </div>
     </div>
 </x-app-layout>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.5.2/web3.min.js"></script>
     <script type="text/javascript" src="https://unpkg.com/web3@1.2.11/dist/web3.min.js"></script>
     <script type="text/javascript" src="https://unpkg.com/web3modal@1.9.0/dist/index.js"></script>
     <script type="text/javascript" src="https://unpkg.com/evm-chains@0.2.0/dist/umd/index.min.js"></script>
     <script type="text/javascript" src="https://unpkg.com/@walletconnect/web3-provider@1.2.1/dist/umd/index.min.js"></script>
     <script type="text/javascript" src="https://unpkg.com/fortmatic@2.0.6/dist/fortmatic.js"></script>
-    <!-- This is our example code -->
     <script type="text/javascript" src="{{asset('js/ethereum-script.js')}}"></script>
 </html>

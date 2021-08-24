@@ -137,14 +137,15 @@
                                 <tbody>
                                     <tr>
                                         <td class="text-left">
-                                            <span class="text-xs font-medium">1</span>
+                                            <span class="text-xs font-medium">{{$refId}}</span>
+                                            <!-- <span class="text-xs font-medium">1</span> -->
                                         </td>
                                         <td class="text-right">
                                             <span class="text-xs font-medium">{{$uniqueClicks}}</span>
                                         </td>
-                                        <td class="text-right"><span class="text-xs font-medium">-</span></td>
+                                        <td class="text-right"><span class="text-xs font-medium">0.00%</span></td>
                                         <td class="text-right"><span class="text-xs font-medium">{{$signUps}}</span></td>
-                                        <td class="text-right"><span class="text-xs font-medium">-</span></td>
+                                        <td class="text-right balance"><span class="text-xs font-medium">0.000000000000000000</span></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -152,7 +153,7 @@
                     </div>
                     <div class="flex justify-between  border-t border-gray-200">
                         <div class="v2-table-page-results px-2  py-4 sm:px-10">
-                            <span class="v2-text-base">0 campaigns</span>
+                            <span class="v2-text-base">1 campaigns</span>
                         </div>
                     </div>
                 </div>
@@ -162,4 +163,5 @@
         </div>
     </div>
 </x-app-layout>
+<script type="text/javascript" src="{{asset('js/ethereum-script.js')}}"></script>
 </html>
