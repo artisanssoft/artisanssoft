@@ -14,7 +14,7 @@ function init() {
     walletconnect: {
       package: WalletConnectProvider,
       options: {
-        infuraId: "0x0AaFB655636890a1683c1b5cCFAbD12Efd839D09",
+        infuraId: "4da2f96f8aa6441f846a2feaeca9e28c",
       }
     },
 
