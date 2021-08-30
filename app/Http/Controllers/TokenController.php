@@ -35,8 +35,10 @@ class TokenController extends Controller
         //         return view('pages.affiliate-page', compact('ref'));
         //     }
         $refData = \Common::userRefData();
-        $ethAddressData = \Common::getUserEthAddress();
-        $ethAddress = $ethAddressData->data;
+        // dd($refData);
+        // $ethAddressData = \Common::getUserEthAddress();
+        // // dd($ethAddressData);
+        // $ethAddress = $ethAddressData->data;
         return view('pages.token-page',compact('refData'));
     }
 }

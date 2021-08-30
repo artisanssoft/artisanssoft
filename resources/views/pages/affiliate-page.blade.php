@@ -164,5 +164,4 @@
         </div>
     </div>
 </x-app-layout>
-<script type="text/javascript" src="{{asset('js/ethereum-script.js')}}"></script>
 </html>

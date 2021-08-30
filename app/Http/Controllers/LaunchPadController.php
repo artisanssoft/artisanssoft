@@ -10,8 +10,7 @@ class LaunchPadController extends Controller
     public function index(){
         $token = session('api_token');
         $url = "https://api.next.exchange/api/user";
-
-            $curl = curl_init($url);
+        $curl = curl_init($url);
             curl_setopt($curl, CURLOPT_URL, $url);
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 
@@ -25,8 +24,8 @@ class LaunchPadController extends Controller
             curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
 
             $resp = curl_exec($curl);
-            
             curl_close($curl);
-        return view('pages.index',compact('resp'));
+        $refData = \Common::userRefData();
+        return view('pages.index',compact('resp', 'refData'));
     }
 }

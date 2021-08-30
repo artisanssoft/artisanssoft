@@ -53,6 +53,8 @@ async function fetchAccountData() {
 		const clone = template.content.cloneNode(true);
     clone.querySelector(".address").textContent = address;
     clone.querySelector(".balance").textContent = humanFriendlyBalance;
+    $('.ethbalance').text(humanFriendlyBalance);
+    ethBlance();
     accountContainer.appendChild(clone);
 	});
 	await Promise.all(rowResolvers);

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -21,6 +22,7 @@
             {{ __('Dashboard') }}
         </h2>
     </x-slot>
+   
     <!-- @include('layouts.components.flash-message') -->
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -38,7 +40,7 @@
                             Welcome to the Merchant Token App
                         </h2>
                         <p class="text-sm">
-                            G1Q1453ZM
+                        {{$refData->data}}
                         </p>
                     </div>
                     
@@ -56,7 +58,7 @@
                                     Account ID
                                 </p>
                                 <p class="text-xs rounded-lg px-2 font-medium py-0.8 bg-gray-200 text-gray-700">
-                                    G1Q1453ZM
+                                {{$refData->data}}
                                 </p>
                             </div>
                             <div class="mb-4 border-0 p-0 w-full sm:mb-0 w-auto border-r px-4 border-gray-200">
@@ -68,11 +70,11 @@
                                 </p>
                             </div>
                             <div class="mb-4 border-0 p-0 w-full sm:mb-0 w-auto border-r px-4 border-gray-200">
-                                <p class="text-sm">
+                                <p class="text-sm ">
                                     My ETH Balance <span class="text-xxs rounded-lg px-1 py-1 font-medium bg-blue-100 text-indigo-500">$0.00</span>
                                 </p>
-                                <p class="text-xs">
-                                    0.0000000000000000
+                                <p class="text-xs ethbalance">
+                                 
                                 </p>
                             </div>
                             <div class="w-full border-0 p-0 sm:mb-0 w-auto pl-4">
@@ -140,4 +142,15 @@
     </div>
 </div>
 </x-app-layout>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$( window ).on('load',function() {
+   var metaMaskEthBlance = localStorage.getItem('ethbalance');
+    if(metaMaskEthBlance==null || metaMaskEthBlance =='' || metaMaskEthBlance == undefined){
+        $('.ethbalance').text('0');
+    }else{
+        $('.ethbalance').text(metaMaskEthBlance);
+    }
+});
+</script>
 </html>

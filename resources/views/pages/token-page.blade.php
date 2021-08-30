@@ -58,8 +58,9 @@
                                 <p class="text-sm">
                                     ETH Balance
                                 </p>
-                                <p class="text-xs" id="eth-balance">
-                                    0.0000000000000000
+                               
+                                <p class="text-xs ethbalance" id="eth-balance">
+                                    
                                 </p>
                             </div>
                             <div class="w-full border-0 p-0 sm:mb-0 w-auto pl-4">
@@ -156,4 +157,18 @@
     <script type="text/javascript" src="https://unpkg.com/@walletconnect/web3-provider@1.2.1/dist/umd/index.min.js"></script>
     <script type="text/javascript" src="https://unpkg.com/fortmatic@2.0.6/dist/fortmatic.js"></script>
     <script type="text/javascript" src="{{asset('js/ethereum-script.js')}}"></script>
+    <script>
+        function ethBlance(){
+            var metaMaskEthBlance = $('.ethbalance').text();
+            localStorage.setItem("ethbalance", metaMaskEthBlance);
+        }
+        $( window ).on('load',function() {
+        var metaMaskEthBlance = localStorage.getItem('ethbalance');
+            if(metaMaskEthBlance==null || metaMaskEthBlance =='' || metaMaskEthBlance == undefined){
+                $('.ethbalance').text('0');
+            }else{
+                $('.ethbalance').text(metaMaskEthBlance);
+            }
+        });
+    </script>
 </html>
